@@ -16,6 +16,7 @@ import tensorflow as tf
 
 import numpy as np
 import os
+import random
 
 from pf_constants import *
 
@@ -173,3 +174,20 @@ def generate_text(model, start_string):
 
 
 print(generate_text(model, start_string=u"BRAIN"))
+
+# #trialing a batch system------------------------------------------------------
+# TODO figure out the folder system and batch generation
+# # Make directory
+#
+# # Generate a random 6 character key to help avoid name collision
+# output_dir_key = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
+#
+# output_dir = ".\\Intermediary results\\" + FOLDER_NAME + "-" + output_dir_key
+#
+# oos.mkdir(output_dir)
+#
+# for each in OUTPUT_SEEDS:
+#
+#
+#
+#
