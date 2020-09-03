@@ -11,6 +11,9 @@
 venv/
 ENV/
 
+# RNN training checkpoints
+training_checkpoints/
+
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
