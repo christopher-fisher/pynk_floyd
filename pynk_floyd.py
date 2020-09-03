@@ -1,5 +1,16 @@
-"""Using a RNN to generate new Pink Floyd lyrics
+"""Using a RNN to generate new Pink Floyd lyrics trained on their discography
+through The Division Bell.
+
+Adapted from the TensorFlow Shakespeare text generation tutorial:
+https://www.tensorflow.org/tutorials/text/text_generation
+
+Training data adopted from textfiles.com, AZlyrics.com and
+pink-floyd-lyrics.com
 """
+
+# TODO Clean up extraneous code from tutorial
+
+# TODO General PEP8 cleanup and tweaks for readibility
 
 import tensorflow as tf
 
