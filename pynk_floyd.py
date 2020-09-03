@@ -5,13 +5,12 @@ import tensorflow as tf
 
 import numpy as np
 import os
-import time
+
+from pf_constants import *
 
 # For now just using a modified version of darkside.txt from textfiles.com
 # In the future this will be the lyrics of the band's full catalog.
-training_file_path = "C:\\Users\\daeur\\PycharmProjects\\pynk_floyd\\Training Data\\darkside.txt"
-
-training_lyrics = open(training_file_path).read() # .decode(encoding='utf-8')
+training_lyrics = open(TRAINING_DATA_PATH).read() # .decode(encoding='utf-8')
 
 # Number of unique characters in the training file
 vocab = sorted(set(training_lyrics))
@@ -123,8 +122,6 @@ checkpoint_callback=tf.keras.callbacks.ModelCheckpoint(
     filepath=checkpoint_prefix,
     save_weights_only=True)
 
-EPOCHS=67
-
 history = model.fit(dataset, epochs=EPOCHS, callbacks=[checkpoint_callback])
 
 tf.train.latest_checkpoint(checkpoint_dir)
@@ -147,16 +144,14 @@ def generate_text(model, start_string):
 
     text_generated = []
 
-    # Lower = more predictable, higher = more surprising.
-    # This is a good number to tweak
-    temperature = 0.67
+
 
     model.reset_states()
     for i in range(num_generate):
         predictions = model(input_eval)
         predictions = tf.squeeze(predictions, 0)
 
-        predictions - predictions / temperature
+        predictions - predictions / TEMPERATURE
         predicted_id = tf.random.categorical(predictions, num_samples=1)[-1, 0].numpy()
 
         input_eval = tf.expand_dims([predicted_id], 0)
