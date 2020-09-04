@@ -3,7 +3,7 @@
 # File path for training data
 TRAINING_DATA_PATH = "C:\\Users\\daeur\\PycharmProjects\\pynk_floyd\\Training Data\\darkside.txt"
 
-EPOCHS = 67
+EPOCHS = 10
 
 # Lower = more predictable, higher = more surprising.
 # This is a good number to tweak

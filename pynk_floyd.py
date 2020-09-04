@@ -16,7 +16,6 @@ import tensorflow as tf
 
 import numpy as np
 import os
-import random
 import time
 
 from pf_constants import *
@@ -190,6 +189,10 @@ outdir_path = './Intermediary results/' + outdir_name
 # make the directory
 os.mkdir(outdir_path)
 
+log_name = outdir_path + '/log-' + timestamp + '.txt'
+
+start_time = time.strftime("%m/%d/%Y, %H:%M:%S")
+
 for i in range(len(OUTPUT_SEEDS)):
     # Get a new timestamp for each file to avoid collision
     # in the case of repeated seeds
@@ -197,6 +200,19 @@ for i in range(len(OUTPUT_SEEDS)):
     file_name = outdir_path + '/' + outfile_name + ".txt"
     with open(file_name, "w") as f:
         f.write(generate_text(model, start_string=OUTPUT_SEEDS[i]))
+
+end_time = time.strftime("%m/%d/%Y, %H:%M:%S")
+
+with open(log_name, "w") as l:
+    l.write("Project: " + PROJECT_NAME + '-' + timestamp + '\n')
+    l.write("Seeds: " + str(OUTPUT_SEEDS) + '\n')
+    l.write("Training data: " + TRAINING_DATA_PATH + '\n')
+    l.write("Epochs: " + str(EPOCHS) + '\n')
+    l.write("Start time: " + start_time + '\n')
+    l.write("Finish time: " + end_time + '\n')
+    l.write("Model information: \n")
+    l.write(str(model.history))
+
 
 
 
