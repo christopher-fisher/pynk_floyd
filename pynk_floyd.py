@@ -17,6 +17,7 @@ import tensorflow as tf
 import numpy as np
 import os
 import random
+import time
 
 from pf_constants import *
 
@@ -144,7 +145,6 @@ model.load_weights(tf.train.latest_checkpoint(checkpoint_dir))
 
 model.build(tf.TensorShape([1, None]))
 
-# model.summary()
 
 def generate_text(model, start_string):
     # Number of characters to generate
@@ -173,21 +173,32 @@ def generate_text(model, start_string):
     return  start_string + ''.join(text_generated)
 
 
-print(generate_text(model, start_string=u"BRAIN"))
+#print(generate_text(model, start_string=u"BRAIN"))
 
-# #trialing a batch system------------------------------------------------------
-# TODO figure out the folder system and batch generation
-# # Make directory
-#
-# # Generate a random 6 character key to help avoid name collision
-# output_dir_key = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
-#
-# output_dir = ".\\Intermediary results\\" + FOLDER_NAME + "-" + output_dir_key
-#
-# oos.mkdir(output_dir)
-#
-# for each in OUTPUT_SEEDS:
-#
-#
-#
-#
+# Used to help avoid collision
+def get_timestamp():
+    return str(time.time())
+
+
+timestamp = get_timestamp()
+
+# Create output directory name
+outdir_name =  PROJECT_NAME + '-' + timestamp
+
+outdir_path = './Intermediary results/' + outdir_name
+
+# make the directory
+os.mkdir(outdir_path)
+
+for i in range(len(OUTPUT_SEEDS)):
+    # Get a new timestamp for each file to avoid collision
+    # in the case of repeated seeds
+    outfile_name = OUTPUT_SEEDS[i] + '-' + get_timestamp()
+    file_name = outdir_path + '/' + outfile_name + ".txt"
+    with open(file_name, "w") as f:
+        f.write(generate_text(model, start_string=OUTPUT_SEEDS[i]))
+
+
+
+
+

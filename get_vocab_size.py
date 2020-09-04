@@ -5,6 +5,8 @@ and for easy access from the CLI without having to go through
 training.
 """
 
+# TODO resolve issue where this runs pynk
+
 from pynk_floyd import vocab
 
 print('{} unique characters'.format(len(vocab)))
