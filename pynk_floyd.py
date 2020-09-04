@@ -29,6 +29,8 @@ training_lyrics = open(TRAINING_DATA_PATH).read()
 vocab = sorted(set(training_lyrics))
 # for darkside.txt n = 53
 
+start_time = time.strftime("%m/%d/%Y, %H:%M:%S")
+
 # Create a mapping between the unique characters and their indices.
 char2idx = {u: i for i, u in enumerate(vocab)}
 idx2char = np.array(vocab)
@@ -163,8 +165,6 @@ outdir_path = './Intermediary results/' + outdir_name
 os.mkdir(outdir_path)
 
 log_name = outdir_path + '/log-' + timestamp + '.txt'
-
-start_time = time.strftime("%m/%d/%Y, %H:%M:%S")
 
 for i in range(len(OUTPUT_SEEDS)):
     # Get a new timestamp for each file to avoid collision
