@@ -20,8 +20,9 @@ import time
 
 from pf_constants import *
 
-# For now just using a modified version of darkside.txt from textfiles.com
-# In the future this will be the lyrics of the band's full catalog.
+# Set in pf_constants.py
+# Using the lyrics of Dark Side of the Moon for now to get everything tuned
+# This will be replaced with a much larger training file later
 training_lyrics = open(TRAINING_DATA_PATH).read()
 
 # Number of unique characters in the training file
@@ -51,15 +52,6 @@ def split_input_target(chunk):
 
 
 dataset = sequences.map(split_input_target)
-
-for input_example, target_example in dataset.take(1):
-    print('Input data: ', repr(''.join(idx2char[input_example.numpy()])))
-    print('Target data: ', repr(''.join(idx2char[target_example.numpy()])))
-
-for i, (input_idx, target_idx) in enumerate(zip(input_example[:5], target_example[:5])):
-    print("Step {:4d}".format(i))
-    print("   input: {} ({:s})".format(input_idx, repr(idx2char[input_idx])))
-    print("   expected output: {} ({:s})".format(target_idx, repr(idx2char[target_idx])))
 
 BATCH_SIZE = 12
 
