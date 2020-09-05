@@ -4,11 +4,11 @@
 # TRAINING_DATA_PATH = "C:\\Users\\daeur\\PycharmProjects\\pynk_floyd\\Training Data\\darkside.txt"
 TRAINING_DATA_PATH = "C:\\Users\\daeur\\PycharmProjects\\pynk_floyd\\Training Data\\pinkfloyd.txt"
 
-EPOCHS = 25
+EPOCHS = 15
 
 # Lower = more predictable, higher = more surprising.
 # This is a good number to tweak
-TEMPERATURE = 1.0
+TEMPERATURE = 1.15
 
 # List of initial inputs for batch generation
 # This will change after the proof of concept stage

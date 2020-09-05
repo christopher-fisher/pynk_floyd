@@ -181,6 +181,7 @@ with open(log_name, "w") as l:
     l.write("Seeds: " + str(OUTPUT_SEEDS) + '\n')
     l.write("Training data: " + TRAINING_DATA_PATH + '\n')
     l.write("Epochs: " + str(EPOCHS) + '\n')
+    l.write("Temperature: " + str(TEMPERATURE) + '\n')
     l.write("Start time: " + start_time + '\n')
     l.write("Finish time: " + end_time + '\n')
 # Not currently implemented:
